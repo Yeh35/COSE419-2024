@@ -1,4 +1,4 @@
-# dune exec -- ./main.exe --input examples/partial/absArray --print-adt
+# dune exec -- ./main.exe --input examples/partial/absArray_fail --print-adt
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/sambyeol/.cache/dune/db
@@ -19,4 +19,4 @@
 #        }
 #  ; instrument_with = []
 #  }
-$ /home/sambyeol/.opam/5.1.1/bin/ocamlc.opt -config > /tmp/dune_3f2a2b_output
+$ /home/sambyeol/.opam/5.1.1/bin/ocamlc.opt -config > /tmp/dune_cc3e7e_output

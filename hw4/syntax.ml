@@ -108,9 +108,7 @@ and string_of_lv : lv -> string
 
 let rec replace_exp : id -> exp -> exp -> exp 
 =fun x e exp -> 
-  print_endline ("x: " ^ x);
-  print_endline ("e: " ^ (string_of_exp e));
-  print_endline ("exp: " ^ (string_of_exp exp));
+  (* print_endline ("x: " ^ x ^ " e: " ^ (string_of_exp e) ^ " exp: " ^ (string_of_exp exp)); *)
   match exp with 
   | E_int n -> E_int n 
   | E_bool b -> E_bool b 
