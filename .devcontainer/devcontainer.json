@@ -1,0 +1,11 @@
+{
+    "name": "cose419-2024",
+    "image": "ghcr.io/sambyeol/ocaml-devcontainer",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ocamllabs.ocaml-platform"
+            ]
+        }
+    }
+}
