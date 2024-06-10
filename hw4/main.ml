@@ -35,10 +35,9 @@ let main : unit -> unit
 =fun () -> 
   let args = read_args () in 
   let pgm = read args.inputFile in
-  let cfg = Graph.pgm2cfg pgm in 
   let _ = if args.printAdt 
     then prerr_endline ("Input Program.\n" ^ (pgm |> Syntax.string_of_pgm ~indent:1)) else () in 
-  let _ = if args.printCfg then (Graph.Cfg.dot cfg; exit 1) in 
+  let _ = if args.printCfg then (let cfg = Graph.pgm2cfg pgm in Graph.Cfg.dot cfg; exit 1) in 
   let res = 
     if not args.termination then begin 
         prerr_endline "Verifying partial correctnesss";

@@ -1,0 +1,75 @@
+type token =
+    WHILE
+  | STAR
+  | SORTED
+  | SLASH
+  | SKIP
+  | SEMICOLON
+  | RPAREN
+  | RETURN
+  | RBRACK
+  | RBRACE
+  | PRE
+  | POST
+  | PLUS
+  | PARTITIONED
+  | OR
+  | NUMBER of int
+  | NEQ
+  | MINUS
+  | MID
+  | LT
+  | LPAREN
+  | LE
+  | LBRACK
+  | LBRACE
+  | INT
+  | IMPLY
+  | IFF
+  | IF
+  | IDENT of string
+  | HASH
+  | GT
+  | GE
+  | FORALL
+  | FOR
+  | FNOT
+  | EXISTS
+  | EQ
+  | EOF
+  | ENOT
+  | ELSE
+  | DOT
+  | DO
+  | COMMA
+  | COLON
+  | CALL
+  | BREAK
+  | BOOLEAN of bool
+  | BOOL
+  | ASSIGN
+  | ASSERT
+  | AND
+val menhir_begin_marker : int
+val xv_typ : Syntax.typ
+val xv_ttyp : Syntax.typ
+val xv_stmt : Syntax.stmt
+val xv_start : Syntax.pgm
+val xv_separated_nonempty_list_COMMA_exp_ : Syntax.rank
+val xv_separated_nonempty_list_COMMA_arg_decl_ : Syntax.decl list
+val xv_rank : Syntax.rank option
+val xv_pgm : Syntax.pgm
+val xv_pdc : Syntax.fmla
+val xv_option_COLON_ : unit option
+val xv_nonempty_list_stmt_ : Syntax.stmt list
+val xv_nonempty_list_decl_ : Syntax.decl list
+val xv_lv : Syntax.lv
+val xv_inv : Syntax.inv
+val xv_fmla : Syntax.fmla
+val xv_fbody : Syntax.decl list * Syntax.stmt
+val xv_exp : Syntax.exp
+val xv_decl : Syntax.decl
+val xv_assign : Syntax.stmt
+val xv_arg_decl : Syntax.decl
+val xv_arg : Syntax.decl list
+val menhir_end_marker : int

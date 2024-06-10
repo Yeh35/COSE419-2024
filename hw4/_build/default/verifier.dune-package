@@ -1,0 +1,4 @@
+(lang dune 3.12)
+(name verifier)
+(sections (lib .) (bin ../../bin) (doc ../../doc/verifier))
+(files (lib (META dune-package)) (bin (verifier)) (doc (README.md)))

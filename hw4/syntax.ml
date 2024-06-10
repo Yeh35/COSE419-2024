@@ -69,8 +69,48 @@ type pgm = {
 
 (**************************************************)
 
+let rec string_of_typ : typ -> string 
+=fun t ->  
+  match t with
+  | T_int     -> "Int"
+  | T_bool    -> "Bool"
+  | T_arr t1  -> (string_of_typ t1) ^ "[]"
+
+and string_of_exp : exp -> string
+=fun e -> 
+  match e with
+  | E_int   n1          -> (string_of_int n1)
+  | E_bool  b1          -> (if b1 then "true" else "false")
+  | E_lv    v1          -> (string_of_lv v1)
+  | E_arr_update   (x1, e2, e3) -> x1 ^ "<" ^ string_of_exp e2 ^ ":" ^ string_of_exp e3 ^ ">"
+  | E_add   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " + " ^ (string_of_exp e2) ^ ")"
+  | E_sub   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " - " ^ (string_of_exp e2) ^ ")"
+  | E_mul   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " * " ^ (string_of_exp e2) ^ ")"
+  | E_div   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " / " ^ (string_of_exp e2) ^ ")"
+  | E_neg   e1          -> "-" ^ (string_of_exp e1)
+  | E_len   id1         -> "|" ^ id1 ^ "|"
+  | E_not   e1          -> "!" ^ (string_of_exp e1)
+  | E_eq    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " == " ^ (string_of_exp e2) ^ ")"
+  | E_lt    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " < "  ^ (string_of_exp e2) ^ ")"
+  | E_neq   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " != " ^ (string_of_exp e2) ^ ")"
+  | E_gt    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " > "  ^ (string_of_exp e2) ^ ")"
+  | E_le    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " <= " ^ (string_of_exp e2) ^ ")"
+  | E_ge    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " >= " ^ (string_of_exp e2) ^ ")"
+
+and string_of_lv : lv -> string
+=fun v -> 
+  match v with
+  | V_var id1       -> id1
+  | V_arr (id1, e2)  -> id1 ^ "[" ^ (string_of_exp e2) ^ "]"
+
+
+(**************************************************)
+
 let rec replace_exp : id -> exp -> exp -> exp 
 =fun x e exp -> 
+  print_endline ("x: " ^ x);
+  print_endline ("e: " ^ (string_of_exp e));
+  print_endline ("exp: " ^ (string_of_exp exp));
   match exp with 
   | E_int n -> E_int n 
   | E_bool b -> E_bool b 
@@ -150,40 +190,6 @@ let create_program body pre post rank typ id args locals = {
   locals = locals; 
   stmt = body
 }
-
-let rec string_of_typ : typ -> string 
-=fun t ->  
-  match t with
-  | T_int     -> "Int"
-  | T_bool    -> "Bool"
-  | T_arr t1  -> (string_of_typ t1) ^ "[]"
-
-and string_of_exp : exp -> string
-=fun e -> 
-  match e with
-  | E_int   n1          -> (string_of_int n1)
-  | E_bool  b1          -> (if b1 then "true" else "false")
-  | E_lv    v1          -> (string_of_lv v1)
-  | E_arr_update   (x1, e2, e3) -> x1 ^ "<" ^ string_of_exp e2 ^ ":" ^ string_of_exp e3 ^ ">"
-  | E_add   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " + " ^ (string_of_exp e2) ^ ")"
-  | E_sub   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " - " ^ (string_of_exp e2) ^ ")"
-  | E_mul   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " * " ^ (string_of_exp e2) ^ ")"
-  | E_div   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " / " ^ (string_of_exp e2) ^ ")"
-  | E_neg   e1          -> "-" ^ (string_of_exp e1)
-  | E_len   id1         -> "|" ^ id1 ^ "|"
-  | E_not   e1          -> "!" ^ (string_of_exp e1)
-  | E_eq    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " == " ^ (string_of_exp e2) ^ ")"
-  | E_lt    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " < "  ^ (string_of_exp e2) ^ ")"
-  | E_neq   (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " != " ^ (string_of_exp e2) ^ ")"
-  | E_gt    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " > "  ^ (string_of_exp e2) ^ ")"
-  | E_le    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " <= " ^ (string_of_exp e2) ^ ")"
-  | E_ge    (e1, e2)    -> "(" ^ (string_of_exp e1) ^ " >= " ^ (string_of_exp e2) ^ ")"
-
-and string_of_lv : lv -> string
-=fun v -> 
-  match v with
-  | V_var id1       -> id1
-  | V_arr (id1, e2)  -> id1 ^ "[" ^ (string_of_exp e2) ^ "]"
 
 let rec string_of_fmla : fmla -> string
 =let ts = string_of_fmla in 

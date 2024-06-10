@@ -1,0 +1,10 @@
+lib: [
+  "_build/install/default/lib/verifier/META"
+  "_build/install/default/lib/verifier/dune-package"
+]
+bin: [
+  "_build/install/default/bin/verifier"
+]
+doc: [
+  "_build/install/default/doc/verifier/README.md"
+]

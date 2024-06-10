@@ -349,16 +349,59 @@ module Cfg : Cfg = struct
 
   let dot g = 
     print_endline "digraph G {";
+    print_endline "nodes: ";
     NodeSet.iter (fun n -> 
       print_string (string_of_int (Node.get_nodeid n) ^ " ");
       print_string ("[label=\"" ^ string_of_annotation n g ^ "   " ^ Node.to_string n ^ " " ^ "\"]");
       print_endline ""
     ) g.nodes;
+    print_endline "";
+    print_endline "succs: ";
     NodeMap.iter (fun n succs -> 
       NodeSet.iter (fun s ->
         print_endline (string_of_int (Node.get_nodeid n) ^ " -> " ^ string_of_int (Node.get_nodeid s))
       ) succs
     ) g.succs;
+    print_endline "";
+    print_endline "args: ";
+    List.iter (fun decl -> 
+      print_endline (string_of_decl decl)
+    ) g.args;
+    print_endline "";
+    print_endline "entry: ";
+    print_string (string_of_int (Node.get_nodeid g.entry) ^ " ");
+    print_string ("[label=\"" ^ string_of_annotation g.entry g ^ "   " ^ Node.to_string g.entry ^ " " ^ "\"]");
+    print_endline "";
+    print_endline "";
+    print_endline "exit: ";
+    print_string (string_of_int (Node.get_nodeid g.exit) ^ " ");
+    print_string ("[label=\"" ^ string_of_annotation g.exit g ^ "   " ^ Node.to_string g.exit ^ " " ^ "\"]");
+    print_endline "";
+    print_endline "";
+    print_endline "preds: ";
+    NodeMap.iter (fun n pred -> 
+      NodeSet.iter (fun s ->
+        print_endline (string_of_int (Node.get_nodeid n) ^ " -> " ^ string_of_int (Node.get_nodeid s))
+      ) pred
+    ) g.preds;
+    print_endline "";
+    print_endline "loopheads: ";
+    NodeSet.iter (fun n -> 
+      print_string (string_of_int (Node.get_nodeid n) ^ " ");
+      print_string ("[label=\"" ^ string_of_annotation n g ^ "   " ^ Node.to_string n ^ " " ^ "\"]");
+      print_endline ""
+    ) g.loopheads;
+    print_endline "";
+    print_endline "invariants: ";
+    NodeMap.iter (fun n inv -> 
+      print_endline (string_of_int (Node.get_nodeid n) ^ " -> " ^ string_of_inv inv)
+    ) g.invariants;
+    print_endline "";
+    print_endline "ranks: ";
+    NodeMap.iter (fun n rank -> 
+      print_endline (string_of_int (Node.get_nodeid n) ^ " -> " ^ string_of_rank rank)
+    ) g.ranks;
+    print_endline "";
     print_endline "}"
 end
 
