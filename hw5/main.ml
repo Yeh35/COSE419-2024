@@ -37,10 +37,9 @@ let main : unit -> unit
 =fun () -> 
   let args = read_args () in 
   let (vars, cmd) = read args.inputFile in
-  let cfg = cmd2cfg cmd in 
-  let _ = if args.printCfg then (Cfg.dot cfg; exit 1) in 
+  let _ = if args.printCfg then let cfg = cmd2cfg cmd in (Cfg.dot cfg; exit 1) in 
   let n = Analyzer.analyze (vars, cmd) in 
-    List.iter (fun x -> prerr_endline x) vars; 
-    prerr_endline ("# of proved assertions: " ^ string_of_int n)
+  List.iter (fun x -> prerr_endline x) vars; 
+  prerr_endline ("# of proved assertions: " ^ string_of_int n)
   
 let _ = main()

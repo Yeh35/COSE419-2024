@@ -1,0 +1,7 @@
+lib: [
+  "_build/install/default/lib/ai/META"
+  "_build/install/default/lib/ai/dune-package"
+]
+bin: [
+  "_build/install/default/bin/ai"
+]

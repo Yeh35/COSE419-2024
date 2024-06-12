@@ -1,0 +1,37 @@
+type token =
+    WHILE
+  | VAR
+  | TRUE
+  | STAR
+  | SEMICOLON
+  | RPAREN
+  | RBRACE
+  | PLUS
+  | NUMBER of int
+  | MINUS
+  | LPAREN
+  | LE
+  | LBRACE
+  | IF
+  | IDENT of string
+  | FOR
+  | FALSE
+  | EQ
+  | EOF
+  | ENOT
+  | ELSE
+  | COMMA
+  | ASSIGN
+  | ASSERT
+  | AND
+val menhir_begin_marker : int
+val xv_start : Syntax.pgm
+val xv_separated_nonempty_list_COMMA_IDENT_ : string list
+val xv_pgm : Syntax.pgm
+val xv_nonempty_list_cmd_ : Syntax.cmd list
+val xv_decls : string list
+val xv_cmd : Syntax.cmd
+val xv_bexp : Syntax.bexp
+val xv_assign : Syntax.cmd
+val xv_aexp : Syntax.aexp
+val menhir_end_marker : int

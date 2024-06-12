@@ -1,0 +1,22 @@
+# dune exec -- ./main.exe --input examples/ex3
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/sambyeol/.cache/dune/db
+# Workspace root: /workspaces/COSE419-2024/hw5
+# Auto-detected concurrency: 4
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" : "/workspaces/COSE419-2024/hw5/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /home/sambyeol/.opam/5.1.1/bin/ocamlc.opt -config > /tmp/dune_e36ae4_output

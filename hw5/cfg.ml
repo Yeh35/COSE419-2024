@@ -123,6 +123,10 @@ module Cfg : Cfg = struct
         print_endline (string_of_int (Node.get_nodeid n) ^ " -> " ^ string_of_int (Node.get_nodeid s))
       ) succs
     ) g.succs;
+    print_endline "entries ";
+    NodeSet.iter (fun n -> 
+      print_string (string_of_int (Node.get_nodeid n) ^ " ")
+    ) (entries g);
     print_endline "}"
 end
 
